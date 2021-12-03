@@ -12,4 +12,4 @@ COPY . /usr/src/app
 
 CMD ["yarn", "dev"]
 
-# docker build -t your-image-name:dev .
+# docker build -t italin-gang-frontend:dev .
