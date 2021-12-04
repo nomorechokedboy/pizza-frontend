@@ -1,0 +1,45 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.container {
+    @include flex;
+    @include alignItems(center);
+    flex: 0.7;
+    padding: 0 20px 50px;
+}
+.pizzaImg {
+    width: 250px;
+    &:hover {
+        width: 400px;
+        -webkit-transition: 0.5s ease;
+        transition: 0.5s ease;
+    }
+}
+.header {
+    -ms-flex-preferred-size: 70%;
+    flex-basis: 70%;
+    margin-left: 10px;
+}
+.title {
+    @include flex;
+    @include alignItems(flex-end);
+}
+.pizzaName,
+.price {
+    color: $black;
+    @include text(32px, bold);
+}
+.line {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    border: 1px solid black;
+    margin: 0 10px;
+    margin-bottom: 10px;
+    height: 100%;
+}
+.descript {
+    width: 40%;
+    margin: 10px 8px;
+    line-height: 20px;
+}

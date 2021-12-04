@@ -1,0 +1,48 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap');
+
+.container {
+    @include flexColCenter;
+    position: relative;
+    height: 97vh;
+    &::before {
+        content: '';
+        position: absolute;
+        background-image: url('https://images.squaremeal.co.uk/cloud/article/9819/images/the-best-italian-restaurants-in-london-gloria_06102020124732.jpg?w=1000');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        -webkit-filter: blur(1px) brightness(60%);
+        filter: blur(1px) brightness(60%);
+    }
+}
+.title {
+    font-size: 4rem;
+    font-family: 'Bungee Inline';
+    font-weight: 1;
+    color: #f8f8f6;
+    margin: 3% 0% 0% 0%;
+}
+.descript {
+    @extend .title;
+    font-size: 2rem;
+    font-family: 'Cedarville Cursive';
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}

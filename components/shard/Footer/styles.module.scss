@@ -1,0 +1,19 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.container {
+    @include gridCenter;
+    background-color: hsla(0, 0, 0, 0.8);
+    color: $white;
+    padding: 20px 0 50px;
+}
+.toTop {
+    @include flexCol;
+    @include alignItems(center);
+    cursor: pointer;
+}
+.text {
+    @include text(20px, bold);
+    user-select: none;
+    margin-top: 20px;
+}
