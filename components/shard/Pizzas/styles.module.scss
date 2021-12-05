@@ -1,20 +1,17 @@
+@import '../../../styles/mixins';
+
 .container {
+    @include flexColCenter;
+    @include minHeight(fit-content);
     border: double 3px #c5be93;
     border-top: none;
     width: 100%;
-    min-height: -webkit-fit-content;
-    min-height: -moz-fit-content;
-    min-height: fit-content;
-    margin-bottom: 30px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
     padding-top: 50px;
+}
+.title {
+    @include text(32px, bolder);
+    border: 1px solid;
+    padding: 15px;
+    margin-bottom: 50px;
+    scroll-margin-top: 100px;
 }

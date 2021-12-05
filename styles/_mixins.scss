@@ -90,3 +90,15 @@
         weight: $weigth;
     }
 }
+@mixin pos($type, $top, $right: $top, $bottom: $top, $left: $right) {
+    position: $type;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+@mixin minHeight($value) {
+    min-height: -webkit-fit-content;
+    min-height: -moz-fit-content;
+    min-height: $value;
+}

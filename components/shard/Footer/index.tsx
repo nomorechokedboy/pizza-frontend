@@ -1,12 +1,9 @@
 import React from 'react';
+import { goTop } from '../../../utils/Scroll';
 import styles from './styles.module.scss';
 
 export default function Footer() {
-    const scrollToTop = React.useCallback(() => {
-        window.scrollTo({
-            top: 0,
-        });
-    }, []);
+    const scrollToTop = React.useCallback(goTop, []);
 
     return (
         <footer className={styles.container}>

@@ -3,12 +3,12 @@ import styles from './styles.module.scss';
 
 interface ButtonProps {
     text: string;
-    style: React.CSSProperties;
+    style: string;
 }
 
 export default function Button({ text, style }: ButtonProps) {
     return (
-        <button className={styles.button} onClick={() => console.log('Click')}>
+        <button className={styles[style]} onClick={() => console.log('Click')}>
             {text}
         </button>
     );

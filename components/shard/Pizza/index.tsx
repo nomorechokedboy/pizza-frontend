@@ -1,5 +1,4 @@
 import React from 'react';
-import AddToCart from '../AddToCart';
 import Button from '../Button';
 import styles from './styles.module.scss';
 
@@ -21,7 +20,7 @@ export default function Pizza() {
                     cheeses and dairy products that are designed and
                     manufactured for use specifically on pizza.
                 </p>
-                <AddToCart />
+                <Button text="Add to cart" style="addToCart" />
             </div>
         </div>
     );

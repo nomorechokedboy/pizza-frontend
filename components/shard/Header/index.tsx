@@ -21,7 +21,7 @@ export default function Header() {
                     <a href="">Article</a>
                 </li>
                 <li className={styles.item}>
-                    <a href="#_menu">Menu</a>
+                    <a href="#menu">Menu</a>
                 </li>
             </ul>
         </header>

@@ -1,0 +1,11 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.button {
+    @include pos(fixed, null, 30px, 30px, null);
+    background-color: goldenrod;
+    border-radius: 50%;
+    color: $black;
+    cursor: pointer;
+    padding: 14px 20px;
+}
