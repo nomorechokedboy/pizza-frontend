@@ -1,20 +1,21 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { HomeProps } from '../../pages';
 import { selectIsLogin } from '../../redux/isLogin/action';
 import Banner from '../shard/Banner';
-import Footer from '../shard/Footer';
 import GoToTop from '../shard/GoToTop';
 import Header from '../shard/Header';
-import Login from '../shard/Login';
-import Pizzas from '../shard/Pizzas';
 import styles from './styles.module.scss';
+
+const Login = dynamic(() => import('../shard/Login'));
+const Pizzas = dynamic(() => import('../shard/Pizzas'));
+const Footer = dynamic(() => import('../shard/Footer'));
 
 interface HomePageProps extends HomeProps {}
 
 export default function HomePage({ products }: HomePageProps) {
   const isLogin = useSelector(selectIsLogin);
-  console.log({ isLogin });
 
   return (
     <>

@@ -3,8 +3,8 @@
 .overlay {
   @include overlay;
   @include flex;
-  padding: 40% 0;
+  padding: 20% 0;
   @include desktop {
-    padding: 15% 30%;
+    padding: 10% 30%;
   }
 }

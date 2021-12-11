@@ -1,14 +1,14 @@
 import React from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import { ILoginForm } from '../../../types';
+import { ILoginForm, IRegisterForm } from '../../../types';
 import Validate from '../Validate';
 import styles from './styles.module.scss';
 
 interface LoginInputProps {
   label: string;
-  register: UseFormRegister<ILoginForm>;
+  register: UseFormRegister<ILoginForm | IRegisterForm>;
   placeholder: string;
-  inputName: 'email' | 'password'; //|'phoneNumber'|'confirm'|'fullName'
+  inputName: 'email' | 'password' | 'phoneNumber' | 'confirm' | 'fullName';
   type: string;
   errors: any;
   showPwd?: boolean;

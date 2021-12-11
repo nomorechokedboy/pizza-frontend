@@ -20,9 +20,9 @@ export default function Pizzas({ products }: PizzasProps) {
 
   return (
     <div className={styles.container} ref={observe}>
-      {/* {products.map((product: Product) => (
+      {products.map((product: Product) => (
         <Pizza key={product._id} product={product} />
-      ))} */}
+      ))}
     </div>
   );
 }
