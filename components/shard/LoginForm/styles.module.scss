@@ -1,0 +1,64 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.container {
+  @include flex;
+  border-radius: 5px;
+  background-color: $white;
+  flex: 1;
+}
+.imgWrapper {
+  position: relative;
+  .img {
+    border-radius: 5px;
+  }
+  @include desktop {
+    flex: 0.5;
+  }
+}
+.form {
+  @include flexCol;
+  flex: 1;
+  padding: 30px;
+  position: relative;
+  @include desktop {
+    flex: 0.5;
+  }
+}
+.exit {
+  --exit-pos: 0;
+  background-color: $darkGold;
+  border-top-right-radius: 5px;
+  position: absolute;
+  top: var(--exit-pos);
+  right: var(--exit-pos);
+  padding: 10px 15px;
+  @include desktop {
+    background-color: transparent;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $darkGold;
+  }
+}
+.formHeader {
+  @include flex;
+  margin-bottom: 20px;
+}
+.submitBtn {
+  @include text(16px, bold);
+  background-color: $orange;
+  border-radius: 3px;
+  border: none;
+  color: $black;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  user-select: none;
+  width: 100%;
+  &:hover,
+  &:active {
+    opacity: 0.8;
+  }
+}

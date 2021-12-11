@@ -2,14 +2,15 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 interface ButtonProps {
-    text: string;
-    style: string;
+  text: string;
+  style: string;
+  handleClick: React.MouseEventHandler;
 }
 
-export default function Button({ text, style }: ButtonProps) {
-    return (
-        <button className={styles[style]} onClick={() => console.log('Click')}>
-            {text}
-        </button>
-    );
+export default function Button({ text, style, handleClick }: ButtonProps) {
+  return (
+    <button className={styles[style]} onClick={handleClick}>
+      {text}
+    </button>
+  );
 }

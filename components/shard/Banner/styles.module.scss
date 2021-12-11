@@ -5,44 +5,56 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap');
 
 .container {
-    @include flexColCenter;
-    position: relative;
-    height: 97vh;
-    &::before {
-        content: '';
-        position: absolute;
-        background-image: url('https://images.squaremeal.co.uk/cloud/article/9819/images/the-best-italian-restaurants-in-london-gloria_06102020124732.jpg?w=1000');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: bottom;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        -webkit-filter: blur(1px) brightness(60%);
-        filter: blur(1px) brightness(60%);
-    }
+  --banner-height: 40vh;
+  @include flexColCenter;
+  position: relative;
+  margin-bottom: 20px;
+  height: var(--banner-height);
+  user-select: none;
+  @include desktop {
+    --banner-height: 97vh;
+  }
+}
+.banners {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.bannersImg {
+  filter: blur(1px) brightness(60%);
+}
+.bannersText {
+  position: absolute;
+  bottom: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(50%);
 }
 .title {
-    font-size: 4rem;
-    font-family: 'Bungee Inline';
-    font-weight: 1;
-    color: #f8f8f6;
-    margin: 3% 0% 0% 0%;
+  @include text(2.5rem, 1);
+  color: #f8f8f6;
+  font-family: 'Bungee Inline';
+  margin: 3% 0% 0% 0%;
+  text-align: center;
+  @include desktop {
+    @include text(4rem, 1);
+  }
 }
 .descript {
-    @extend .title;
-    font-size: 2rem;
-    font-family: 'Cedarville Cursive';
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+  @extend .title;
+  @include text(1.5rem, null);
+  font-family: 'Cedarville Cursive';
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  @include desktop {
+    @include text(2rem, null);
+  }
 }

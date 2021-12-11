@@ -1,0 +1,16 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.container {
+  @include flexCol;
+  margin-bottom: 20px;
+}
+.label {
+  @include text(14px, bold);
+  color: $orange;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+.input {
+  padding: 10px;
+}

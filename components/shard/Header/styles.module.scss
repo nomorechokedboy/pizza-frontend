@@ -2,26 +2,38 @@
 @import '../../../styles/variables';
 
 .header {
-    @include flex;
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 1;
+  @include flex;
+  background-color: $white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 .container {
-    @include flex;
-    @include alignContent(center);
-    background-color: $white;
-    flex: 1;
-    padding: 15px 0;
+  @include flex;
+  @include alignContent(center);
+  flex: 1;
+  justify-content: space-evenly;
+  padding: 10px;
+  .item:hover {
+    cursor: pointer;
+  }
+  .item:not(:first-child):hover {
+    background-color: $orange;
+    border-radius: 3px;
+  }
+  @include desktop {
+    flex: 0.3;
+  }
 }
 .item {
-    @include flexCenter;
-    height: 30px;
-    color: $black;
-    padding: 0 5px;
-    margin: 0px 50px;
+  @include flexCenter;
+  height: 30px;
+  color: $black;
+  padding: 10px;
+  user-select: none;
 }
 .logo {
-    width: 50px;
+  width: 50px;
 }

@@ -2,6 +2,9 @@
 .gitignore
 .vscode
 .next/
-Dockerfile
+Dockerfile*
 docker-compose.yml
 node_modules/
+.prettierignore
+.prettierrc
+.husky

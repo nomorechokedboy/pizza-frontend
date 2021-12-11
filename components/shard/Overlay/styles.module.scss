@@ -1,0 +1,10 @@
+@import '../../../styles/mixins';
+
+.overlay {
+  @include overlay;
+  @include flex;
+  padding: 40% 0;
+  @include desktop {
+    padding: 15% 30%;
+  }
+}

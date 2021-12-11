@@ -1,27 +1,39 @@
 import React from 'react';
 import Button from '../Button';
 import styles from './styles.module.scss';
+import Image from 'next/image';
+import { HomeProps } from '../../../pages';
+import { Product } from '../../../types';
 
-export default function Pizza() {
-    return (
-        <div className={styles.container}>
-            <img
-                className={styles.pizzaImg}
-                src="https://wowthemesnet.github.io/template-fooddelivery-bootstrap-html/img/pizza-1.png"
-            />
-            <div className={styles.header}>
-                <div className={styles.title}>
-                    <p className={styles.pizzaName}>Cheese pizza</p>
-                    <div className={styles.line} />
-                    <p className={styles.price}>$15</p>
-                </div>
-                <p className={styles.descript}>
-                    Pizza cheese encompasses several varieties and types of
-                    cheeses and dairy products that are designed and
-                    manufactured for use specifically on pizza.
-                </p>
-                <Button text="Add to cart" style="addToCart" />
-            </div>
-        </div>
-    );
+interface PizzaProps {
+  product: Product;
+}
+
+export default function Pizza({ product }: PizzaProps) {
+  return (
+    <div className={styles.container}>
+      <div className={styles.pizzaImg}>
+        <Image
+          src={product.img}
+          width={211}
+          height={211}
+          placeholder="blur"
+          blurDataURL="https://theme.hstatic.net/200000093231/1000565457/14/lazyload.jpg?v=963"
+          className={styles.img}
+        />
+      </div>
+      <div className={styles.header}>
+        <p className={styles.pizzaName}>{product.name}</p>
+      </div>
+      <p className={styles.descript}>{product.description}</p>
+      <div className={styles.footer}>
+        <Button
+          text="Add to cart"
+          style="addToCart"
+          handleClick={() => console.log('click')}
+        />
+        <p className={styles.price}>${product.price}</p>
+      </div>
+    </div>
+  );
 }

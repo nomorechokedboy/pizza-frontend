@@ -1,0 +1,51 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.container {
+  @include flexCol;
+  --col: 2;
+  --spacing: 5px;
+  background-color: #999;
+  border-radius: 5px;
+  width: calc(calc(100% / var(--col)) - var(--spacing));
+  height: 400px;
+  justify-content: center;
+  margin-bottom: calc(var(--spacing) * 2);
+  padding: 10px;
+  @include desktop {
+    --col: 4;
+    --spacing: 20px;
+  }
+}
+.lazyImg,
+.lazyContent {
+  background-color: $silver;
+  border-radius: 5px;
+  padding: 10px;
+}
+.lazyImg {
+  flex: 0.5;
+  margin-bottom: 10px;
+}
+.lazyContent {
+  @include flexCol;
+  flex: 0.5;
+}
+.lazyHeader,
+.lazyBody,
+.lazyButton {
+  background-color: $matterhorn;
+  border-radius: 10px;
+}
+.lazyHeader {
+  flex: 0.5;
+  width: 50%;
+}
+.lazyBody {
+  margin: 20px 0;
+  flex: 1;
+}
+.lazyButton {
+  flex: 0.5;
+  width: 20%;
+}

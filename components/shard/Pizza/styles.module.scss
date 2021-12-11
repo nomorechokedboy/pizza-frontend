@@ -2,44 +2,63 @@
 @import '../../../styles/variables';
 
 .container {
-    @include flex;
-    @include alignItems(center);
-    flex: 0.7;
-    padding: 0 20px 50px;
+  @include flexColCenter;
+  --col: 2;
+  --spacing: 5px;
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: $white;
+  padding: var(--spacing);
+  width: calc(calc(100% / var(--col)) - var(--spacing));
+  margin-bottom: calc(var(--spacing) * 2);
+  @include desktop {
+    --col: 4;
+    --spacing: 20px;
+    margin-right: var(--spacing);
+    margin-bottom: var(--spacing);
+    justify-content: flex-start;
+  }
 }
 .pizzaImg {
-    width: 250px;
-    &:hover {
-        width: 300px;
-        -webkit-transition: 0.5s ease;
-        transition: 0.5s ease;
-    }
+  --scale: 1.2;
+  flex: 1;
+  padding: 10px;
+  margin-bottom: 10px;
+  .img {
+    border-radius: 5px;
+  }
+  &:hover {
+    transform: scale(var(--scale));
+    -webkit-transition: 0.5s ease;
+    transition: transform 0.5s ease;
+  }
+  @include desktop {
+    --scale: 1.1;
+    padding: 0;
+  }
 }
 .header {
-    -ms-flex-preferred-size: 70%;
-    flex-basis: 70%;
-    margin-left: 10px;
-}
-.title {
-    @include flex;
-    @include alignItems(flex-end);
-}
-.pizzaName,
-.price {
+  height: 80px;
+  .pizzaName {
+    @include text(16px, bold);
     color: $black;
-    @include text(32px, bold);
-}
-.line {
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    border: 1px solid black;
-    margin: 0 10px;
-    margin-bottom: 10px;
-    height: 100%;
+    line-height: 1.4;
+    margin-bottom: var(--spacing);
+  }
 }
 .descript {
-    width: 40%;
-    margin: 10px 8px;
-    line-height: 20px;
+  @include text(14px, bold);
+  @include textTrunkcate(2);
+  margin-bottom: var(--spacing);
+  text-align: justify;
+}
+.footer {
+  @include flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  .price {
+    @include text(10px, 400);
+    color: $black;
+  }
 }

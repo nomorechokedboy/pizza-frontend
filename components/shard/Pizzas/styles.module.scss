@@ -1,17 +1,14 @@
 @import '../../../styles/mixins';
 
 .container {
-    @include flexColCenter;
-    @include minHeight(fit-content);
-    border: double 3px #c5be93;
-    border-top: none;
-    width: 100%;
-    padding-top: 50px;
+  @include flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 50px;
+  justify-content: space-between;
+  @include desktop {
+    padding: 0 15%;
+  }
 }
 .title {
-    @include text(32px, bolder);
-    border: 1px solid;
-    padding: 15px;
-    margin-bottom: 50px;
-    scroll-margin-top: 100px;
 }

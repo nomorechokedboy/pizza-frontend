@@ -1,0 +1,12 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.errorMsg {
+  @include text(12px, bold);
+  color: $orange;
+  margin-top: 10px;
+  &::before {
+    content: '⚠ ';
+    display: inline;
+  }
+}
