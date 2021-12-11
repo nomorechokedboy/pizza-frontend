@@ -1,9 +1,8 @@
 import React from 'react';
-import Button from '../Button';
 import styles from './styles.module.scss';
 import Image from 'next/image';
-import { HomeProps } from '../../../pages';
-import { Product } from '../../../types';
+import { Product } from '../../../../../types';
+import Button from '../../../../shard/Button';
 
 interface PizzaProps {
   product: Product;

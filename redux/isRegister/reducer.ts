@@ -7,7 +7,7 @@ export default function isRegisterReducer(
 ) {
   switch (action.type) {
     case SET_IS_REGISTER:
-      return state;
+      return action.payload;
     default:
       return state;
   }

@@ -1,5 +1,5 @@
-@import '../../../styles/mixins';
-@import '../../../styles/variables';
+@import '../../../../../styles/mixins';
+@import '../../../../../styles/variables';
 
 .container {
   @include flex;
@@ -7,7 +7,7 @@
   background-color: $white;
   flex: 1;
 }
-.imgWrapper {
+.left {
   position: relative;
   .img {
     border-radius: 5px;
@@ -16,7 +16,7 @@
     flex: 0.5;
   }
 }
-.form {
+.right {
   @include flexCol;
   flex: 1;
   padding: 30px;
@@ -44,6 +44,22 @@
 .formHeader {
   @include flex;
   margin-bottom: 20px;
+  .title {
+    @include text(18px, bolder);
+    border-radius: 3px;
+    color: $darkGold;
+    padding: 10px;
+    user-select: none;
+    &:hover {
+      background-color: $black;
+      color: $orange;
+      cursor: pointer;
+    }
+  }
+}
+.active {
+  @extend .title;
+  border-bottom: 3px solid $orange;
 }
 .submitBtn {
   @include text(16px, bold);

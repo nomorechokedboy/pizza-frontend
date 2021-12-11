@@ -1,7 +1,8 @@
+import { SET_IS_REGISTER } from '../actionType';
 import { StateTree } from '../types';
 
 export const setIsRegister = (isRegister: boolean) => ({
-  type: isRegister,
+  type: SET_IS_REGISTER,
   payload: isRegister,
 });
 

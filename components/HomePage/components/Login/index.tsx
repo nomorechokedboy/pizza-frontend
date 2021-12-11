@@ -1,7 +1,6 @@
 import React from 'react';
-import LoginForm from '../LoginForm';
-import Overlay from '../Overlay';
-import styles from './styles.module.scss';
+import Overlay from '../../../shard/Overlay';
+import LoginForm from './LoginForm';
 
 const Login = React.memo(() => {
   return (
