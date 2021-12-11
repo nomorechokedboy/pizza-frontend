@@ -2,17 +2,13 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsLogin } from '../../../redux/isLogin/action';
-import {
-  selectIsRegister,
-  setIsRegister,
-} from '../../../redux/isRegister/action';
-import { ILoginForm } from '../../../types';
+import { useDispatch } from 'react-redux';
+import { setIsLogin } from '../../../../../redux/isLogin/action';
+import { ILoginForm } from '../../../../../types';
 import LoginInput from '../LoginInput';
 import styles from './styles.module.scss';
 
-const RegisterForm = dynamic(() => import('../RegisterForm'));
+const RegisterForm = dynamic(() => import('./RegisterForm'));
 
 const DefaultForm = () => {
   const {
@@ -63,8 +59,7 @@ const DefaultForm = () => {
 };
 
 export default function LoginForm() {
-  const isRegister = useSelector(selectIsRegister);
-
+  const [isRegister, setIsRegister] = React.useState(false);
   const [checked, setChecked] = React.useState('Login');
   const activeLogin = React.useMemo(
     () => (checked === 'Login' ? styles.active : ''),
@@ -80,11 +75,11 @@ export default function LoginForm() {
   const handleExit = () => dispatch(setIsLogin(false));
   const handleLogin = () => {
     setChecked('Login');
-    dispatch(setIsRegister(false));
+    setIsRegister(false);
   };
   const handleRegister = () => {
     setChecked('Signup');
-    dispatch(setIsRegister(true));
+    setIsRegister(true);
   };
 
   return (

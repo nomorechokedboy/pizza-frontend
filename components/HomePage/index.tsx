@@ -3,14 +3,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { HomeProps } from '../../pages';
 import { selectIsLogin } from '../../redux/isLogin/action';
-import Banner from '../shard/Banner';
+import Banner from './components/Banner';
+import Footer from '../shard/Footer';
 import GoToTop from '../shard/GoToTop';
 import Header from '../shard/Header';
 import styles from './styles.module.scss';
+import Pizzas from './components/Pizzas';
 
-const Login = dynamic(() => import('../shard/Login'));
-const Pizzas = dynamic(() => import('../shard/Pizzas'));
-const Footer = dynamic(() => import('../shard/Footer'));
+const Login = dynamic(() => import('./components/Login'));
 
 interface HomePageProps extends HomeProps {}
 

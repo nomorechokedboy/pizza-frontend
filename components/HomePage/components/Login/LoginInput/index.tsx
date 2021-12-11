@@ -1,7 +1,7 @@
 import React from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import { ILoginForm, IRegisterForm } from '../../../types';
-import Validate from '../Validate';
+import { ILoginForm, IRegisterForm } from '../../../../../types';
+import Validate from '../../../../shard/Validate';
 import styles from './styles.module.scss';
 
 interface LoginInputProps {

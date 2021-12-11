@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from '../LoginForm/styles.module.scss';
-import LoginInput from '../LoginInput';
+import styles from '../styles.module.scss';
+import LoginInput from '../../LoginInput';
 import { useForm } from 'react-hook-form';
-import { IRegisterForm } from '../../../types';
+import { IRegisterForm } from '../../../../../../types';
 
 export default function RegisterForm() {
   const {
