@@ -3,6 +3,7 @@ import styles from '../styles.module.scss';
 import LoginInput from '../../LoginInput';
 import { useForm } from 'react-hook-form';
 import { IRegisterForm } from '../../../../../../types';
+import Button from '../../../../../shard/Button';
 
 export default function RegisterForm() {
   const {
@@ -82,9 +83,12 @@ export default function RegisterForm() {
         minLength={8}
         maxLength={30}
       />
-      <button type="submit" className={styles.submitBtn} onClick={onSubmit}>
-        Signup
-      </button>
+      <Button
+        type="submit"
+        btnStyle="submitBtn"
+        label="Register"
+        handleClick={onSubmit}
+      />
     </form>
   );
 }

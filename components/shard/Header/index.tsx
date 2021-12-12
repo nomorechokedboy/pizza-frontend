@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { setIsLogin } from '../../../redux/isLogin/action';
 import styles from './styles.module.scss';
@@ -29,6 +30,22 @@ export default function Header() {
           <a href="#menu">Menu</a>
         </li>
       </ul>
+      <div className={styles.user}>
+        <span>My name is user haha</span>
+        <i className="fas fa-caret-down"></i>
+        <nav className={styles.dropdown}>
+          <Link href="">
+            <a className={styles.item}>
+              Info <i className="fas fa-user-circle"></i>
+            </a>
+          </Link>
+          <Link href="">
+            <a className={styles.item}>
+              Logout <i className="fas fa-sign-out-alt"></i>
+            </a>
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }

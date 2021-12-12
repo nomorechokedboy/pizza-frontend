@@ -1,9 +1,9 @@
 import { SET_IS_REGISTER } from '../actionType';
-import { BooleanAction } from '../types';
+import { ReduxAction } from '../types';
 
 export default function isRegisterReducer(
   state = false,
-  action: BooleanAction,
+  action: ReduxAction<boolean>,
 ) {
   switch (action.type) {
     case SET_IS_REGISTER:

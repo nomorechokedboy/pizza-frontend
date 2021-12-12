@@ -44,37 +44,21 @@
 .formHeader {
   @include flex;
   margin-bottom: 20px;
-  .title {
-    @include text(18px, bolder);
-    border-radius: 3px;
-    color: $darkGold;
-    padding: 10px;
-    user-select: none;
-    &:hover {
-      background-color: $black;
-      color: $orange;
-      cursor: pointer;
-    }
+}
+.title {
+  @include text(18px, bolder);
+  border-radius: 3px;
+  color: $darkGold;
+  padding: 10px;
+  user-select: none;
+  margin-right: 10px;
+  &:hover {
+    background-color: $black;
+    color: $orange;
+    cursor: pointer;
   }
 }
 .active {
   @extend .title;
   border-bottom: 3px solid $orange;
-}
-.submitBtn {
-  @include text(16px, bold);
-  background-color: $orange;
-  border-radius: 3px;
-  border: none;
-  color: $black;
-  cursor: pointer;
-  display: block;
-  text-align: center;
-  padding: 10px 0;
-  user-select: none;
-  width: 100%;
-  &:hover,
-  &:active {
-    opacity: 0.8;
-  }
 }
