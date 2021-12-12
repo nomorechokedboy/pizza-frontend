@@ -37,3 +37,58 @@
 .logo {
   width: 50px;
 }
+.user {
+  @include flex;
+  @include text(18px, bold);
+  align-items: center;
+  margin-left: auto;
+  margin-right: 5%;
+  position: relative;
+  padding: 0 20px;
+  i {
+    color: $orange;
+    margin-left: 10px;
+  }
+  span {
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+  &:hover {
+    border-radius: 3px;
+    background-color: $orange;
+    .dropdown {
+      @include flexCol;
+    }
+    i {
+      color: $black;
+    }
+  }
+  .dropdown {
+    background-color: $white;
+    border: 1px solid;
+    border-radius: 3px;
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    right: 0;
+    .item {
+      @include flex;
+      @include text(14px, bold);
+      border-radius: 3px;
+      border-bottom: 1px solid;
+      justify-content: space-between;
+      padding: 20px;
+      &:hover {
+        background-color: $darkGoldenrod;
+        opacity: 0.8;
+        i {
+          transform: scale(1.8);
+          transition: transform 0.2s ease-out 0.1s;
+        }
+      }
+    }
+  }
+}

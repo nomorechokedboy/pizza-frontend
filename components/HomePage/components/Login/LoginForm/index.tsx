@@ -5,10 +5,15 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setIsLogin } from '../../../../../redux/isLogin/action';
 import { ILoginForm } from '../../../../../types';
+import Loading from '../../../../shard/Loading';
 import LoginInput from '../LoginInput';
 import styles from './styles.module.scss';
+import cx from 'classnames';
+import Button from '../../../../shard/Button';
 
-const RegisterForm = dynamic(() => import('./RegisterForm'));
+const RegisterForm = dynamic(() => import('./RegisterForm'), {
+  loading: () => <Loading />,
+});
 
 const DefaultForm = () => {
   const {
@@ -51,9 +56,12 @@ const DefaultForm = () => {
         minLength={8}
         maxLength={30}
       />
-      <button type="submit" className={styles.submitBtn} onClick={onSubmit}>
-        Login
-      </button>
+      <Button
+        type="submit"
+        btnStyle="submitBtn"
+        label="Login"
+        handleClick={onSubmit}
+      />
     </form>
   );
 };
@@ -62,11 +70,17 @@ export default function LoginForm() {
   const [isRegister, setIsRegister] = React.useState(false);
   const [checked, setChecked] = React.useState('Login');
   const activeLogin = React.useMemo(
-    () => (checked === 'Login' ? styles.active : ''),
+    () =>
+      cx(styles.title, {
+        [styles.active]: checked === 'Login',
+      }),
     [checked],
   );
-  const activeSignup = React.useMemo(
-    () => (checked === 'Signup' ? styles.active : ''),
+  const activeRegister = React.useMemo(
+    () =>
+      cx(styles.title, {
+        [styles.active]: checked === 'Register',
+      }),
     [checked],
   );
 
@@ -78,7 +92,7 @@ export default function LoginForm() {
     setIsRegister(false);
   };
   const handleRegister = () => {
-    setChecked('Signup');
+    setChecked('Register');
     setIsRegister(true);
   };
 
@@ -89,7 +103,7 @@ export default function LoginForm() {
           src="https://dominos.vn/img/bg/modal-signin-signup.png"
           layout="fill"
           placeholder="blur"
-          blurDataURL="https://theme.hstatic.net/200000093231/1000565457/14/lazyload.jpg?v=963"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMT0ysBwAECgGqFsHQaQAAAABJRU5ErkJggg=="
           className={styles.img}
         />
       </div>
@@ -98,17 +112,11 @@ export default function LoginForm() {
           <i className="fas fa-times"></i>
         </div>
         <div className={styles.formHeader}>
-          <h2
-            className={`${styles.title} ${activeLogin}`}
-            onClick={handleLogin}
-          >
+          <h2 className={activeLogin} onClick={handleLogin}>
             Login
           </h2>
-          <h2
-            className={`${styles.title} ${activeSignup}`}
-            onClick={handleRegister}
-          >
-            Signup
+          <h2 className={activeRegister} onClick={handleRegister}>
+            Register
           </h2>
         </div>
         {!isRegister && <DefaultForm />}

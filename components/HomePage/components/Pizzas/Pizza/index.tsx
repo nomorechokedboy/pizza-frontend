@@ -17,7 +17,7 @@ export default function Pizza({ product }: PizzaProps) {
           width={211}
           height={211}
           placeholder="blur"
-          blurDataURL="https://theme.hstatic.net/200000093231/1000565457/14/lazyload.jpg?v=963"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMT0ysBwAECgGqFsHQaQAAAABJRU5ErkJggg=="
           className={styles.img}
         />
       </div>
@@ -27,8 +27,8 @@ export default function Pizza({ product }: PizzaProps) {
       <p className={styles.descript}>{product.description}</p>
       <div className={styles.footer}>
         <Button
-          text="Add to cart"
-          style="addToCart"
+          label="Add to cart"
+          btnStyle="addToCart"
           handleClick={() => console.log('click')}
         />
         <p className={styles.price}>${product.price}</p>

@@ -4,7 +4,10 @@ export interface Product {
   description: string;
   img: string;
   price: number;
+  type: string;
 }
+
+export type ProductTypes = 'pizza' | 'drink' | 'pasta' | 'starter';
 
 export interface ILoginForm {
   email: string;
