@@ -7,7 +7,7 @@ export default function Loading() {
   return (
     <Overlay>
       <div>
-        <Image src={loadingGif} />
+        <Image src={loadingGif} alt="Loading image" />
       </div>
     </Overlay>
   );

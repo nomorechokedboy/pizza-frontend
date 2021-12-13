@@ -105,6 +105,7 @@ export default function LoginForm() {
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMT0ysBwAECgGqFsHQaQAAAABJRU5ErkJggg=="
           className={styles.img}
+          alt="Modal login"
         />
       </div>
       <div className={styles.right}>

@@ -11,35 +11,41 @@ export default function Header() {
   return (
     <header className={styles.header} id="header">
       <ul className={styles.container}>
-        <a href="/">
-          <li id="icon" className={styles.item}>
-            <img
-              className={styles.logo}
-              src="https://wowthemesnet.github.io/template-fooddelivery-bootstrap-html/img/logo.png"
-              alt="logo"
-            />
-          </li>
-        </a>
+        <Link href="/">
+          <a>
+            <li id="icon" className={styles.item}>
+              <img
+                className={styles.logo}
+                src="https://wowthemesnet.github.io/template-fooddelivery-bootstrap-html/img/logo.png"
+                alt="logo"
+              />
+            </li>
+          </a>
+        </Link>
         <li id="btnLogin" className={styles.item} onClick={handleLogin}>
           Login
         </li>
         <li className={styles.item}>
-          <a href="">Article</a>
+          <Link href="/">
+            <a>Article</a>
+          </Link>
         </li>
         <li className={styles.item}>
-          <a href="#menu">Menu</a>
+          <Link href="#menu">
+            <a>Menu</a>
+          </Link>
         </li>
       </ul>
       <div className={styles.user}>
         <span>My name is user haha</span>
         <i className="fas fa-caret-down"></i>
         <nav className={styles.dropdown}>
-          <Link href="">
+          <Link href="/">
             <a className={styles.item}>
               Info <i className="fas fa-user-circle"></i>
             </a>
           </Link>
-          <Link href="">
+          <Link href="/">
             <a className={styles.item}>
               Logout <i className="fas fa-sign-out-alt"></i>
             </a>

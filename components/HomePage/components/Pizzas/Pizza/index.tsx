@@ -19,6 +19,7 @@ export default function Pizza({ product }: PizzaProps) {
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNMT0ysBwAECgGqFsHQaQAAAABJRU5ErkJggg=="
           className={styles.img}
+          alt={product.name}
         />
       </div>
       <div className={styles.header}>

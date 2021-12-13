@@ -10,4 +10,5 @@ const Login = React.memo(() => {
   );
 });
 
+Login.displayName = 'Login';
 export default Login;
