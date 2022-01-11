@@ -8,6 +8,9 @@ export interface Product {
 }
 
 export type ProductTypes = 'pizza' | 'drink' | 'pasta' | 'starter';
+export type FormTypes = 'login' | 'register';
+// export type Login
+export type handleChange = (e: React.FormEvent<HTMLInputElement>) => void;
 
 export interface ILoginForm {
   email: string;
@@ -18,4 +21,9 @@ export interface IRegisterForm extends ILoginForm {
   confirm: string;
   phoneNumber: string;
   fullName: string;
+}
+
+export interface UserDecoded {
+  _id: string;
+  role: string;
 }

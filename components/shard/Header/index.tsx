@@ -1,12 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
+import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
 import { setIsLogin } from '../../../redux/isLogin/action';
 import styles from './styles.module.scss';
+import { selectUserInfo } from '../../../redux/userInfo/action';
 
 export default function Header() {
   const dispatch = useDispatch();
   const handleLogin = () => dispatch(setIsLogin(true));
+  const userInfo = useSelector(selectUserInfo);
 
   return (
     <header className={styles.header} id="header">
@@ -14,17 +17,21 @@ export default function Header() {
         <Link href="/">
           <a>
             <li id="icon" className={styles.item}>
-              <img
-                className={styles.logo}
+              <div className={styles.logo} />
+              <Image
                 src="https://wowthemesnet.github.io/template-fooddelivery-bootstrap-html/img/logo.png"
                 alt="logo"
+                width={50}
+                height={50}
               />
             </li>
           </a>
         </Link>
-        <li id="btnLogin" className={styles.item} onClick={handleLogin}>
-          Login
-        </li>
+        {userInfo === '' && (
+          <li id="btnLogin" className={styles.item} onClick={handleLogin}>
+            Login
+          </li>
+        )}
         <li className={styles.item}>
           <Link href="/">
             <a>Article</a>
@@ -37,7 +44,7 @@ export default function Header() {
         </li>
       </ul>
       <div className={styles.user}>
-        <span>My name is user haha</span>
+        <span>{userInfo}</span>
         <i className="fas fa-caret-down"></i>
         <nav className={styles.dropdown}>
           <Link href="/">

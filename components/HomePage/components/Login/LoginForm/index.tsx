@@ -4,12 +4,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setIsLogin } from '../../../../../redux/isLogin/action';
-import { ILoginForm } from '../../../../../types';
 import Loading from '../../../../shard/Loading';
 import LoginInput from '../LoginInput';
 import styles from './styles.module.scss';
-import cx from 'classnames';
 import Button from '../../../../shard/Button';
+import SelectTitle from '../../../../shard/SelectTitle';
+import { ILoginForm, UserDecoded } from '../../../../../types';
+import axiosClient from '../../../../../lib/axiosClient';
+import jwtDecode from 'jwt-decode';
+import { setUserInfo } from '../../../../../redux/userInfo/action';
 
 const RegisterForm = dynamic(() => import('./RegisterForm'), {
   loading: () => <Loading />,
@@ -24,7 +27,26 @@ const DefaultForm = () => {
     formState: { errors },
   } = useForm<ILoginForm>();
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const dispatch = useDispatch();
+
+  const onSubmit = handleSubmit(async (data) => {
+    const {
+      data: { token },
+    } = await axiosClient.post('user/login', data);
+
+    if (token) {
+      localStorage.setItem('accessToken', token);
+      let { _id: id } = jwtDecode<UserDecoded>(token);
+      const {
+        data: {
+          info: { fullName },
+        },
+      } = await axiosClient.get(`user/${id}`);
+
+      dispatch(setUserInfo(fullName));
+      dispatch(setIsLogin(false));
+    }
+  });
 
   React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
@@ -67,34 +89,13 @@ const DefaultForm = () => {
 };
 
 export default function LoginForm() {
-  const [isRegister, setIsRegister] = React.useState(false);
-  const [checked, setChecked] = React.useState('Login');
-  const activeLogin = React.useMemo(
-    () =>
-      cx(styles.title, {
-        [styles.active]: checked === 'Login',
-      }),
-    [checked],
-  );
-  const activeRegister = React.useMemo(
-    () =>
-      cx(styles.title, {
-        [styles.active]: checked === 'Register',
-      }),
-    [checked],
-  );
+  const [checked, setChecked] = React.useState('login');
 
   const dispatch = useDispatch();
 
   const handleExit = () => dispatch(setIsLogin(false));
-  const handleLogin = () => {
-    setChecked('Login');
-    setIsRegister(false);
-  };
-  const handleRegister = () => {
-    setChecked('Register');
-    setIsRegister(true);
-  };
+
+  const titles = React.useMemo(() => ['login', 'register'], []);
 
   return (
     <div className={styles.container}>
@@ -112,16 +113,9 @@ export default function LoginForm() {
         <div className={styles.exit} onClick={handleExit}>
           <i className="fas fa-times"></i>
         </div>
-        <div className={styles.formHeader}>
-          <h2 className={activeLogin} onClick={handleLogin}>
-            Login
-          </h2>
-          <h2 className={activeRegister} onClick={handleRegister}>
-            Register
-          </h2>
-        </div>
-        {!isRegister && <DefaultForm />}
-        {isRegister && <RegisterForm />}
+        <SelectTitle state={checked} setState={setChecked} titles={titles} />
+        {!(checked === 'register') && <DefaultForm />}
+        {checked === 'register' && <RegisterForm />}
       </div>
     </div>
   );

@@ -7,4 +7,5 @@ export interface StateTree {
   count: number;
   isLogin: boolean;
   isRegister: boolean;
+  userInfo: string;
 }
