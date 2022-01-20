@@ -45,7 +45,7 @@ export default function Header() {
         console.error(e);
       }
     })(token);
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <header className={styles.header} id="header">

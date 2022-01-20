@@ -7,7 +7,6 @@ import { IRegisterForm } from '../../../../../types';
 import Button from '../../../Button';
 import Validate from '../../../Validate';
 import LoginInput from '../../LoginInput';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { yupResolver } = require('@hookform/resolvers/yup');
 import registerSchema from '../../../../../lib/validate/register';
 
