@@ -1,4 +1,4 @@
-import axiosClient from '../axiosClient';
+import axiosServer from '../axiosServer';
 
 export const GetAllProduct = () =>
-  axiosClient.get('product/').then((data) => data);
+  axiosServer.get('product/').then((data) => data);

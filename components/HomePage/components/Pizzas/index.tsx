@@ -1,13 +1,13 @@
 import React from 'react';
-import useInView from 'react-cool-inview';
-import { useForm } from 'react-hook-form';
 import { HomeProps } from '../../../../pages';
-import { handleChange, Product } from '../../../../types';
+import { Product } from '../../../../types';
 import SelectTitle from '../../../shard/SelectTitle';
 import Pizza from './Pizza';
 import styles from './styles.module.scss';
 
-interface PizzasProps extends HomeProps {}
+interface PizzasProps {
+  products: Product[];
+}
 
 export default function Pizzas({ products }: PizzasProps) {
   const [selected, setSelected] = React.useState('pizza');
@@ -19,7 +19,7 @@ export default function Pizzas({ products }: PizzasProps) {
     products = products.filter((product) =>
       product.name.toLowerCase().includes(search.toLowerCase()),
     );
-  const handleChange: handleChange = (e: React.FormEvent<HTMLInputElement>) =>
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) =>
     setSearch(e.currentTarget.value);
 
   const titles = React.useMemo(

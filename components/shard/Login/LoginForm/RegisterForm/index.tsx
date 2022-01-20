@@ -1,9 +1,15 @@
 import React from 'react';
-import styles from '../styles.module.scss';
-import LoginInput from '../../LoginInput';
 import { useForm } from 'react-hook-form';
-import { IRegisterForm } from '../../../../../../types';
-import Button from '../../../../../shard/Button';
+import { useDispatch } from 'react-redux';
+import axiosClient from '../../../../../lib/axiosClient';
+import { setIsRegister } from '../../../../../redux/isRegister/action';
+import { IRegisterForm } from '../../../../../types';
+import Button from '../../../Button';
+import Validate from '../../../Validate';
+import LoginInput from '../../LoginInput';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { yupResolver } = require('@hookform/resolvers/yup');
+import registerSchema from '../../../../../lib/validate/register';
 
 export default function RegisterForm() {
   const {
@@ -12,13 +18,36 @@ export default function RegisterForm() {
     reset,
     formState,
     formState: { errors },
-  } = useForm<IRegisterForm>();
-  const onSubmit = handleSubmit((data) => console.log(data));
+  } = useForm<IRegisterForm>({
+    mode: 'onTouched',
+    resolver: yupResolver(registerSchema),
+  });
+  const [error, setError] = React.useState<string>('');
+  const dispatch = useDispatch();
+  const onSubmit = handleSubmit((data) => {
+    axiosClient
+      .post('user/register', data)
+      .then((response) => {
+        console.log({ response });
+
+        if (response.status === 201) {
+          dispatch(setIsRegister(false));
+        }
+      })
+      .catch((e) => {
+        const {
+          errors: [{ email: error }],
+        } = e.response.data;
+
+        setError(error);
+      });
+  });
+
   React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
       reset({
         email: '',
-        confirm: '',
+        cPassword: '',
         fullName: '',
         password: '',
         phoneNumber: '',
@@ -35,9 +64,6 @@ export default function RegisterForm() {
         type="text"
         errors={errors}
         register={register}
-        required={true}
-        minLength={8}
-        maxLength={30}
       />
       <LoginInput
         label="phone number"
@@ -46,9 +72,6 @@ export default function RegisterForm() {
         type="text"
         errors={errors}
         register={register}
-        required={true}
-        minLength={8}
-        maxLength={30}
       />
       <LoginInput
         label="email"
@@ -57,9 +80,6 @@ export default function RegisterForm() {
         type="text"
         errors={errors}
         register={register}
-        required={true}
-        minLength={8}
-        maxLength={30}
       />
       <LoginInput
         label="password"
@@ -68,20 +88,14 @@ export default function RegisterForm() {
         type="password"
         errors={errors}
         register={register}
-        required={true}
-        minLength={8}
-        maxLength={30}
       />
       <LoginInput
-        label="confirm"
-        inputName="confirm"
+        label="confirm password"
+        inputName="cPassword"
         placeholder="Type your confirm password..."
         type="password"
         errors={errors}
         register={register}
-        required={true}
-        minLength={8}
-        maxLength={30}
       />
       <Button
         type="submit"
@@ -89,6 +103,7 @@ export default function RegisterForm() {
         label="Register"
         handleClick={onSubmit}
       />
+      {error && <Validate message={error} warning />}
     </form>
   );
 }

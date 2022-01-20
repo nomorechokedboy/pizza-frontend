@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import React from 'react';
 import HomePage from '../components/HomePage';
 import { GetAllProduct } from '../lib/api/product';
-import { Product } from '../types';
+import { BaseUser, Product } from '../types';
 
 export interface HomeProps {
   products: Product[];

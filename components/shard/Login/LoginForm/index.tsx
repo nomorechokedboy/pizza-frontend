@@ -3,16 +3,17 @@ import Image from 'next/image';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { setIsLogin } from '../../../../../redux/isLogin/action';
-import Loading from '../../../../shard/Loading';
+import { setIsLogin } from '../../../../redux/isLogin/action';
+import Loading from '../../Loading';
 import LoginInput from '../LoginInput';
 import styles from './styles.module.scss';
-import Button from '../../../../shard/Button';
-import SelectTitle from '../../../../shard/SelectTitle';
-import { ILoginForm, UserDecoded } from '../../../../../types';
-import axiosClient from '../../../../../lib/axiosClient';
+import Button from '../../Button';
+import SelectTitle from '../../SelectTitle';
+import { ILoginForm, UserDecoded } from '../../../../types';
+import axiosClient from '../../../../lib/axiosClient';
 import jwtDecode from 'jwt-decode';
-import { setUserInfo } from '../../../../../redux/userInfo/action';
+import { setUserInfo } from '../../../../redux/userInfo/action';
+import Validate from '../../Validate';
 
 const RegisterForm = dynamic(() => import('./RegisterForm'), {
   loading: () => <Loading />,
@@ -26,25 +27,32 @@ const DefaultForm = () => {
     formState,
     formState: { errors },
   } = useForm<ILoginForm>();
+  const [authFailed, setAuthFailed] = React.useState<string>('');
 
   const dispatch = useDispatch();
 
   const onSubmit = handleSubmit(async (data) => {
-    const {
-      data: { token },
-    } = await axiosClient.post('user/login', data);
-
-    if (token) {
+    try {
+      const {
+        data: { token, refreshToken },
+      } = await axiosClient.post('user/login', data);
       localStorage.setItem('accessToken', token);
-      let { _id: id } = jwtDecode<UserDecoded>(token);
+      localStorage.setItem('refreshToken', refreshToken);
+
+      let { id } = jwtDecode<UserDecoded>(token);
+
       const {
         data: {
           info: { fullName },
         },
-      } = await axiosClient.get(`user/${id}`);
+      } = await axiosClient.get(`user/${id}`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
 
       dispatch(setUserInfo(fullName));
       dispatch(setIsLogin(false));
+    } catch {
+      setAuthFailed('Username or password is wrong, please try again!');
     }
   });
 
@@ -55,36 +63,39 @@ const DefaultForm = () => {
   }, [reset, formState]);
 
   return (
-    <form className={styles.formContent}>
-      <LoginInput
-        label="email"
-        inputName="email"
-        placeholder="Type your email..."
-        type="text"
-        errors={errors}
-        register={register}
-        required={true}
-        minLength={8}
-        maxLength={30}
-      />
-      <LoginInput
-        label="password"
-        inputName="password"
-        placeholder="Type your password..."
-        type="password"
-        errors={errors}
-        register={register}
-        required={true}
-        minLength={8}
-        maxLength={30}
-      />
-      <Button
-        type="submit"
-        btnStyle="submitBtn"
-        label="Login"
-        handleClick={onSubmit}
-      />
-    </form>
+    <>
+      <form className={styles.formContent}>
+        <LoginInput
+          label="email"
+          inputName="email"
+          placeholder="Type your email..."
+          type="text"
+          errors={errors}
+          register={register}
+          required={true}
+          minLength={8}
+          maxLength={30}
+        />
+        <LoginInput
+          label="password"
+          inputName="password"
+          placeholder="Type your password..."
+          type="password"
+          errors={errors}
+          register={register}
+          required={true}
+          minLength={8}
+          maxLength={30}
+        />
+        <Button
+          type="submit"
+          btnStyle="submitBtn"
+          label="Login"
+          handleClick={onSubmit}
+        />
+      </form>
+      {authFailed && <Validate message={authFailed} warning />}
+    </>
   );
 };
 

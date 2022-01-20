@@ -1,5 +1,5 @@
 import React from 'react';
-import Overlay from '../../../shard/Overlay';
+import Overlay from '../Overlay';
 import LoginForm from './LoginForm';
 
 const Login = React.memo(() => {
