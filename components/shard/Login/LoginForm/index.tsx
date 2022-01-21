@@ -45,9 +45,7 @@ const DefaultForm = () => {
         data: {
           info: { fullName },
         },
-      } = await axiosClient.get(`user/${id}`, {
-        headers: { authorization: `Bearer ${token}` },
-      });
+      } = await axiosClient.get(`user/${id}`);
 
       dispatch(setUserInfo(fullName));
       dispatch(setIsLogin(false));
