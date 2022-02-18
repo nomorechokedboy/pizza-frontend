@@ -8,6 +8,7 @@ import { selectUserInfo, setUserInfo } from '../../../redux/userInfo/action';
 import dynamic from 'next/dynamic';
 import Loading from '../Loading';
 import { GetBaseUser } from '../../../lib/api';
+import Cookie from '../../../utils/Cookie';
 
 const Login = dynamic(() => import('../Login'), {
   loading: () => <Loading />,
@@ -18,10 +19,11 @@ export default function Header() {
   const handleLogin = () => dispatch(setIsLogin(true));
   const userInfo = useSelector(selectUserInfo);
   const handleLogout = () => {
-    const token = localStorage.getItem('accessToken');
+    const token = Cookie.get('accessToken');
 
     if (token) {
-      localStorage.removeItem('accessToken');
+      Cookie.remove('accessToken');
+      Cookie.remove('refreshToken');
 
       dispatch(setUserInfo(''));
     }
@@ -30,7 +32,7 @@ export default function Header() {
   const isLogin = useSelector(selectIsLogin);
 
   React.useEffect(() => {
-    const token = localStorage.getItem('accessToken');
+    const token = Cookie.get('accessToken')!;
 
     (async (token: string | null) => {
       try {

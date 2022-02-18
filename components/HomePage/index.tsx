@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React from 'react';
-import { HomeProps } from '../../pages';
 import { Product } from '../../types';
 import Footer from '../shard/Footer';
 import GoToTop from '../shard/GoToTop';

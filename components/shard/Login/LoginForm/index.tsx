@@ -14,6 +14,7 @@ import axiosClient from '../../../../lib/axiosClient';
 import jwtDecode from 'jwt-decode';
 import { setUserInfo } from '../../../../redux/userInfo/action';
 import Validate from '../../Validate';
+import Cookie from '../../../../utils/Cookie';
 
 const RegisterForm = dynamic(() => import('./RegisterForm'), {
   loading: () => <Loading />,
@@ -36,8 +37,13 @@ const DefaultForm = () => {
       const {
         data: { token, refreshToken },
       } = await axiosClient.post('user/login', data);
-      localStorage.setItem('accessToken', token);
-      localStorage.setItem('refreshToken', refreshToken);
+
+      Cookie.set('accessToken', token, {
+        exp: 5 / (24 * 60),
+      });
+      Cookie.set('refreshToken', refreshToken, {
+        exp: 2 / 24,
+      });
 
       let { id } = jwtDecode<UserDecoded>(token);
 
@@ -56,7 +62,7 @@ const DefaultForm = () => {
 
   React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
-      reset({ email: '', password: '' });
+      reset({ password: '' });
     }
   }, [reset, formState]);
 

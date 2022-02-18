@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { API, axiosConfigs } from '../../config';
+import { axiosConfigs } from '../../config';
+import Cookie from '../../utils/Cookie';
 
 const axiosClient = axios.create(axiosConfigs);
 
@@ -8,7 +9,7 @@ axiosClient.interceptors.request.use((config) => {
     Authorization: '',
   };
 
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = Cookie.get('accessToken');
 
   if (accessToken) customHeaders.Authorization = `Bearer ${accessToken}`;
 
@@ -29,16 +30,21 @@ axiosClient.interceptors.response.use(
 
     if (status === 401 && !prevConfigs._retry) {
       prevConfigs._retry = true;
+      console.log({ refreshToken: Cookie.get('refreshToken') });
 
       const {
         data: { token, refreshToken },
       } = await axiosClient.get('user/refreshToken', {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('refreshToken')}`,
+          Authorization: `Bearer ${Cookie.get('refreshToken')}`,
         },
       });
-      localStorage.setItem('accessToken', token);
-      localStorage.setItem('refreshToken', refreshToken);
+      Cookie.set('accessToken', token, {
+        exp: 5 / (24 * 60),
+      });
+      Cookie.set('refreshotken', refreshToken, {
+        exp: 2 / 24,
+      });
 
       return axiosClient({
         ...prevConfigs,
