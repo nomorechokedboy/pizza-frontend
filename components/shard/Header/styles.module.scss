@@ -38,22 +38,25 @@
   width: 50px;
 }
 .user {
+  --spacing: 10px;
   @include flex;
   @include text(18px, bold);
   align-items: center;
   margin-left: auto;
-  margin-right: 5%;
   position: relative;
-  padding: 0 20px;
+  padding: 0 var(--spacing);
+  margin-right: 5%;
+  @include desktop {
+    --spacing: 20px;
+  }
   i {
     color: $orange;
-    margin-left: 10px;
+    @include desktop {
+      margin-left: calc(var(--spacing) / 2);
+    }
   }
   span {
-    display: none;
-    @include desktop {
-      display: block;
-    }
+    @include textTrunkcate(1);
   }
   &:hover {
     border-radius: 3px;

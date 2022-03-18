@@ -13,29 +13,17 @@
     justify-content: flex-start;
   }
 }
-.titleWrapper {
-  @include flex;
-  margin-bottom: 20px;
-  width: 100%;
-  justify-content: space-between;
-  @include desktop {
-    width: 60%;
-  }
-}
-.title {
-  @include text(18px, bolder);
-  border-radius: 3px;
-  color: $darkGold;
+.search {
+  --spacing: 20px;
+  align-self: flex-end;
+  border: 1px solid $orange;
   padding: 10px;
-  user-select: none;
-  margin-right: 10px;
-  &:hover {
-    background-color: $black;
-    color: $orange;
-    cursor: pointer;
+  margin-bottom: var(--spacing);
+  @include desktop {
+    --spacing: 0px;
+    margin-right: calc(15% + 20px);
   }
-}
-.active {
-  @extend .title;
-  border-bottom: 3px solid $orange;
+  &:focus-visible {
+    outline-color: $orange;
+  }
 }

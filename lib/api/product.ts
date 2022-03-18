@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { API } from '../../config';
+import axiosServer from '../axiosServer';
 
 export const GetAllProduct = () =>
-  axios.get(API + '/api/v1/product/').then((data) => data);
+  axiosServer.get('product/').then((data) => data);

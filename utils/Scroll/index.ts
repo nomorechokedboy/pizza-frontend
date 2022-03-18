@@ -1,5 +1,5 @@
 export const goTop = () => {
-    window.scrollTo({
-        top: 0,
-    });
+  window.scrollTo({
+    top: 0,
+  });
 };
